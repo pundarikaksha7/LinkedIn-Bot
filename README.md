@@ -12,6 +12,7 @@ How to deploy:
   Step 2: Open your command prompt.
   
   Step 3: Type the following:
+ 
               pip install selenium
               
               py -m venv FolderName
