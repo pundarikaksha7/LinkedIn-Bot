@@ -6,7 +6,7 @@ Uses Google Chrome Web-Driver, Selenium, Python.
 
 How to deploy:
   
-  Step 1: Download Chrome web driver for your Windows.Save the .exe file in your preferred location.
+  Step 1: Download Chrome web driver for your Windows. Save the .exe file in your preferred location.
   
   Step 2:Enter your credentials and the save the LinkedIn links you need inside the alloted list (inside the code).
   
