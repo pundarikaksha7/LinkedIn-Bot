@@ -39,18 +39,18 @@ for i in LINKEDIN_LINKS:
 	if btn.text=="Connect":
 		driver.execute_script("arguments[0].click();", btn)
 		time.sleep(2)
-			 	# other=driver.find_element(By.XPATH,"//button[@aria-label='Other']")
-			 	# driver.execute_script("arguments[0].click()",other)
-			 	
-			 	# time.sleep(2)
 		
 		other=driver.find_element(By.XPATH,"//button[@aria-label='Other']")
 		driver.execute_script("arguments[0].click()",other)
+		
 		time.sleep(2)
+		
 		connectagain2=driver.find_element(By.XPATH,"//button[@aria-label='Connect']")
 		driver.execute_script("arguments[0].click();",connectagain2)
+		
 		addnote=driver.find_element(By.XPATH,"//button[@aria-label='Add a note']")
 		driver.execute_script("arguments[0].click();", addnote)
+		
 		text_area = driver.find_element(By.ID,'custom-message')
 
 		#Enter your text inside the send keys function here
