@@ -2,7 +2,7 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome('C:/Users/yourusername/chromedriver.exe')
+driver = webdriver.Chrome('C:/Users/YOURUSERNAME/chromedriver.exe') #insert the location of your driver.exe here
 driver.get('https://www.linkedin.com')
 time.sleep(2)
 
@@ -11,32 +11,64 @@ time.sleep(2)
 username = driver.find_element("xpath","//input[@name='session_key']")
 password = driver.find_element("xpath","//input[@name='session_password']")
 
-username.send_keys('youremail')
-password.send_keys('yourpassword')
+username.send_keys('YOUR_EMAIL_ID') #insert your email address to Log into LinkedIn here
+password.send_keys('YOUR_PASSWORD') #enter your password here
 time.sleep(2)
 
 submit = driver.find_element("xpath","//button[@type='submit']").click()
 
-driver.get("linkedin profile link in search bar")
-time.sleep(2)
+#enter the links of all the LinkedIn ids you want to send a note to
+LINKEDIN_LINKS=[
+ #ENTER THE LINKEDIN LINKS OF THE PEOPLE YOU WISH TO SEND REQUESTS INSIDE DOUBLE QUOTES FOR EACH LINK, FOLLOWED BY COMMA
+ "https://www.linkedin.com/in/pundarikaksha7/"
+]
 
-#***************** Send Request *********
+for i in LINKEDIN_LINKS:
+	driver.get(i)
+	time.sleep(2)
 
-all_buttons = driver.find_elements(By.TAG_NAME, "button")
-connect_buttons = [btn for btn in all_buttons if btn.text == "Connect"]
+#**********SEND REQUEST **********
 
-for btn in connect_buttons:
- 	driver.execute_script("arguments[0].click();", btn)
- 	time.sleep(2)
- 	# other=driver.find_element(By.XPATH,"//button[@aria-label='Other']")
- 	# driver.execute_script("arguments[0].click()",other)
- 	
- 	# time.sleep(2)
- 	addnote=driver.find_element(By.XPATH,"//button[@aria-label='Add a note']")
- 	driver.execute_script("arguments[0].click();", addnote)
- 	text_area = driver.find_element(By.ID,'custom-message')
- 	text_area.send_keys("Greetings, I am an organizer at Techniche, the annual techno-management festival of IIT Guwahati. It is the largest of its kind in north-eastern India and one of the largest tech fests of the country.I am hoping to connect and associate with you for the same. Can I get your contact number and email?")
- 	time.sleep(2)
- 	send = driver.find_element(By.XPATH,"//button[@aria-label='Send now']")
- 	driver.execute_script("arguments[0].click();", send)
- 	time.sleep(2)
+	all_buttons = driver.find_elements(By.TAG_NAME, "button")
+	connect_buttons = [btn for btn in all_buttons if btn.text == "Connect" or btn.text=="Follow" or btn.text=="Pending"]
+
+
+
+	# for btn in connect_buttons:
+	btn=connect_buttons[0];
+	if btn.text=="Connect":
+		driver.execute_script("arguments[0].click();", btn)
+		time.sleep(2)
+			 	# other=driver.find_element(By.XPATH,"//button[@aria-label='Other']")
+			 	# driver.execute_script("arguments[0].click()",other)
+			 	
+			 	# time.sleep(2)
+		addnote=driver.find_element(By.XPATH,"//button[@aria-label='Add a note']")
+		driver.execute_script("arguments[0].click();", addnote)
+		text_area = driver.find_element(By.ID,'custom-message')
+
+		#Enter your text inside the send keys function here
+		text_area.send_keys("Greetings, I am an organizer at Techniche, the annual techno-management festival of IIT Guwahati. It is the largest of its kind in north-eastern India and one of the largest tech fests of the country.I am hoping to connect and associate with you for the same. Can I get your contact number and email?")
+		time.sleep(2)
+		send = driver.find_element(By.XPATH,"//button[@aria-label='Send now']")
+		driver.execute_script("arguments[0].click();", send)
+		time.sleep(2)
+
+	elif btn.text=="Follow" or btn.text=="Pending":
+		# btn2=driver.find_elements(By.XPATH,"//button[@aria-label='More actions']")
+		# driver.execute_script("arguments[0].click();", btn2[1])
+		# time.sleep(2)
+		# addnote=driver.find_element(By.XPATH,"//button[@aria-label='Add a note']")
+		# driver.execute_script("arguments[0].click();", addnote)
+		# text_area = driver.find_element(By.ID,'custom-message')
+
+		# #Enter your text inside the send keys function here
+		
+		# text_area.send_keys("Greetings, I am an organizer at Techniche, the annual techno-management festival of IIT Guwahati. It is the largest of its kind in north-eastern India and one of the largest tech fests of the country.I am hoping to connect and associate with you for the same. Can I get your contact number and email?")
+		# time.sleep(2)
+		# send = driver.find_element(By.XPATH,"//button[@aria-label='Send now']")
+		# driver.execute_script("arguments[0].click();", send)
+		time.sleep(5)
+  
+  #time provided to send connection requests manually
+		continue
